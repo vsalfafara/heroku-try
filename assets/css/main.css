@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Montserrat|Source+Sans+Pro');
+
+body {
+   margin: 0;
+   padding: 0;
+   font-family: 'Montserrat', sans-serif;
+}
+
+nav {
+   background-color: #11131D;
+   color: rgba(255, 255, 255, 0.7);
+   justify-content: space-between;
+   font-weight: bold;
+}
+
+nav .container {
+   box-sizing: border-box;
+   padding: 0 50px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   width: 100%;
+}
+
+nav i {
+   cursor: pointer;
+
+}
+
+/* REMOVE THIS ONCE SIDEBAR DESIGN IS UP*/
+nav a {
+   color: rgba(255, 255, 255, 0.7);
+}
+
+.header {
+   display: flex;
+   flex-direction: column;
+   text-transform: uppercase;
+   font-weight: bold;
+   background: #3A506B;
+   color: rgba(255, 255, 255, 0.7);
+   padding-bottom: 20px;
+}
+
+.port-name {
+   text-align: center;
+}
+
+.progress-section, .progress {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   align-items: center;
+}
+
+.progress-name  {
+   font-size: 12px;
+   text-align: center;
+   text-shadow: 0 2px 4px #000000;
+}
+
+.progress-section span {
+   display: inline-block;
+   padding: 0;
+   margin: 0 10px 0 50px;
+   font-size: 16px;
+   font-weight: bolder;
+   line-height: 35px;
+   color: rgba(18,23,38, 0.5);
+   text-align: center;
+   white-space: nowrap;
+   vertical-align: baseline;
+   background-color: #5BC0BE;
+   border-radius:50px;
+   position: relative;
+   top: -3px;
+   height: 35px;
+   width: 35px;
+}
