@@ -21,7 +21,7 @@ class Login extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('loginmodel');
+		$this->load->model('login_model');
 	}
 
 	public function index()
@@ -39,7 +39,7 @@ class Login extends CI_Controller {
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 
-			$result = $this->loginmodel->getUser($username, $password);
+			$result = $this->login_model->getUser($username, $password);
 
 			if ($result) {
 				$this->session->set_userdata($result[0]);
