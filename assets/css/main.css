@@ -7,6 +7,8 @@ body {
    font-family: 'Montserrat', sans-serif;
 }
 
+/* TOP */
+
 nav {
    background-color: #11131D;
    color: rgba(255, 255, 255, 0.7);
@@ -40,7 +42,7 @@ nav a {
    font-weight: bold;
    background: #3A506B;
    color: rgba(255, 255, 255, 0.7);
-   padding-bottom: 20px;
+   padding-bottom: 15px;
 }
 
 .port-name {
@@ -77,4 +79,153 @@ nav a {
    top: -3px;
    height: 35px;
    width: 35px;
+}
+
+/* DASHBOARD */
+
+section {
+   height: 400px;
+   width: 700px;
+   margin: 50px auto;
+   background: rgba(219,223,228, .6);
+   font-family: 'Source Sans Pro', sans-serif;
+   border-radius: 4px;
+   border: 1.5px solid rgba(18,23,38, 0.3);
+}
+
+section .container {
+   height: 100%;
+   box-sizing: border-box;
+   padding: 2px 40px;
+}
+
+section h1 {
+   color: rgba(0, 0, 0, 0.7);
+}
+
+section p {
+   color: rgba(18, 23, 38, 0.6);
+   margin-bottom: 5px;
+}
+
+/* VESSEL */
+
+.vessels {
+   display: flex;
+   flex-direction: column;
+}
+
+.vessels button {
+   background: #5BC0BE;
+   color: #FFFFFF;
+   border: none;
+   height: 50px;
+   margin: 10px 0;
+   font-family: 'Source Sans Pro', sans-serif;
+   font-weight: bold;
+   font-size: 19px;
+   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.vessels button:nth-child(1) {
+   margin-top: 0;
+}
+
+.vessels button:focus  {
+   border: none;
+   outline:none;
+}
+
+.vessels button:active {
+   background: rgba(18,23,38,0.3);
+   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25) inset;
+}
+
+/* VOYAGE */
+
+.voyage {
+   display: flex;
+   flex-direction: column;
+}
+
+.voyage .voyage-number, .voyage .ticketing-agent {
+   display: flex;
+   height: 50px;
+   border: 1.5px solid rgba(18,23,38, 0.6);
+}
+
+.voyage .voyage-number input {
+   border: none;
+   height: 100%;
+   width: 90%;
+   padding: 0 30px;
+   font-size: 18px;
+   background-color: rgba(18,23,38,0.3);
+}
+
+.voyage .voyage-number input:focus {
+   outline: none;
+   text-underline-position: none;
+}
+
+.voyage .voyage-number input:-webkit-autofill {
+   -webkit-animation-name: autofill;
+   -webkit-animation-fill-mode: both;
+}
+
+.voyage .voyage-number i {
+   text-align: center;
+   width: 10%;
+   height: 100%;
+   line-height: 50px;
+   background-color: rgba(18,23,38,0.3);
+}
+
+.voyage .voyage-date {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-between;
+}
+
+.voyage .voyage-date #year,
+.voyage .voyage-date #month,
+.voyage .voyage-date #day {
+   height: 50px;
+   padding: 10px;
+   font-family: 'Source Sans Pro', sans-serif;
+   font-size: 18px;
+   color: rgba(18,23,38, 0.5);
+   border: 1.5px solid rgba(18,23,38, 0.3);
+}
+
+.voyage .voyage-date #year {
+   width: 30%;
+}
+
+.voyage .voyage-date #month {
+   width: 30%;
+}
+
+.voyage .voyage-date #day {
+   width: 30%;
+}
+
+
+.voyage .ticketing-agent input {
+   border: none;
+   height: 100%;
+   width: 100%;
+   padding: 0 30px;
+   font-size: 18px;
+   background-color: rgba(18,23,38,0.3);
+}
+
+.voyage .ticketing-agent input:focus {
+   outline: none;
+   text-underline-position: none;
+}
+
+.voyage .ticketing-agentr input:-webkit-autofill {
+   -webkit-animation-name: autofill;
+   -webkit-animation-fill-mode: both;
 }
