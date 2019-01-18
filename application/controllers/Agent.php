@@ -25,8 +25,13 @@ class Agent extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('extra/header');
-		$this->load->view('agent/index');
-		$this->load->view('extra/footer');
+		if (sizeof($this->session->all_userdata()) > 1) {
+			$this->load->view('extra/header');
+			$this->load->view('agent/index');
+			$this->load->view('extra/footer');
+		}
+		else {
+			redirect('login/index', 'refresh');
+		}
 	}
 } 

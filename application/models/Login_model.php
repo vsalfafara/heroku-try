@@ -7,7 +7,7 @@ class Login_model extends CI_Model {
      }
 
      public function getUser($u, $p) {
-          $this->db->select('*');
+          $this->db->select('login_gid, username');
           $this->db->from('login');
           $this->db->where(array(
                'username' => $u,

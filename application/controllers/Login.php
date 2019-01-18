@@ -26,7 +26,11 @@ class Login extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('login');
+		if (sizeof($this->session->all_userdata()) > 1){
+			redirect('/agent/index', 'refresh');
+		}
+		else
+			$this->load->view('login');
 	}
 
 	public function login() {
@@ -55,6 +59,13 @@ class Login extends CI_Controller {
 	}
 
 	public function logout() {
+		$keys = array(
+			'__ci_last_regenerate',
+			'login_gid',
+			'username',
+			'password',
+		);
+
 		$this->session->unset_userdata('login_gid');
 		$this->session->unset_userdata('username');
 		$this->session->unset_userdata('password');

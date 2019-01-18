@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://demo-app-ph-alfa.herokuapp.com/';
+$config['base_url'] = 'http://localhost/ticket';
 
 /*
 |--------------------------------------------------------------------------
