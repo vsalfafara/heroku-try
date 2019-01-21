@@ -5,10 +5,6 @@ let yearValue = 0;
 
 const button = document.querySelectorAll('.vessel')
 
-button.forEach(value => value.addEventListener('click', function (e) {
-   console.log(e.target.value)
-}))
-
 let month = document.querySelector('#month');
 
 month.addEventListener('change', function (e) {

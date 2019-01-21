@@ -22,6 +22,7 @@ class Login extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('login_model');
+		$this->load->model('user_model');
 	}
 
 	public function index()
@@ -46,7 +47,8 @@ class Login extends CI_Controller {
 			$result = $this->login_model->getUser($username, $password);
 
 			if ($result) {
-				$this->session->set_userdata($result[0]);
+				$result = $this->user_model->getUser($result['login_gid']);
+				$this->session->set_userdata($result);
 				redirect('/agent/index', 'refresh');
 			}
 			else {

@@ -4,6 +4,7 @@
 body {
    margin: 0;
    padding: 0;
+   height: 100vh;
    font-family: 'Montserrat', sans-serif;
 }
 
@@ -81,16 +82,66 @@ nav a {
    width: 35px;
 }
 
+/* NAV BUTTONS*/
+
+.nav-btns {
+   position: absolute;
+   left: 50%;
+   top: 60%;
+   transform: translate(-50%, -50%);
+   width: 950px;
+   display: flex;
+   justify-content: space-between;
+}
+
+.btn-nav {
+   display: inline-block;
+   border-radius: 100%;
+   border: 1px solid rgba(18,23,38, 0.3);
+   background: #FFFFFF;
+   color: #5BC0BE;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+   height: 80px;
+   width: 80px;
+   font-size: 4em;
+   font-weight: bold;
+   line-height: 83px;
+   cursor: pointer;
+}
+
+.btn-nav:active {
+   background: rgba(18,23,38,0.3);
+   color: rgba(18,23,38,0.3);
+   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25) inset;
+}
+
+
+/* FORM-SLIDE */
+
+.form-slide {
+   position: relative;
+   height: 403px;
+   width: 703px;
+   margin: 50px auto;
+   overflow: hidden;
+   display: flex;
+   flex-direction: row;
+}
+
 /* DASHBOARD */
 
 section {
    height: 400px;
    width: 700px;
-   margin: 50px auto;
+   margin: auto;
    background: rgba(219,223,228, .6);
    font-family: 'Source Sans Pro', sans-serif;
    border-radius: 4px;
    border: 1.5px solid rgba(18,23,38, 0.3);
+   flex-shrink: 0;
+   transition: 0.8s;
+   transform: scaleX(0);
+   position: absolute;
 }
 
 section .container {
@@ -108,14 +159,26 @@ section p {
    margin-bottom: 5px;
 }
 
-/* VESSEL */
+.reveal {
+   transform: scaleX(1);
+}
 
-.vessels {
+.originLeft {
+   transform-origin: 0 0;
+}
+
+.originRight {
+   transform-origin: 100% 0;
+}
+
+/* VESSEL, ROUTE, AND FARE */
+
+.vessels, .routes, .fares {
    display: flex;
    flex-direction: column;
 }
 
-.vessels button {
+.form-btn {
    background: #5BC0BE;
    color: #FFFFFF;
    border: none;
@@ -127,16 +190,21 @@ section p {
    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.vessels button:nth-child(1) {
+.form-btn:nth-child(1) {
    margin-top: 0;
 }
 
-.vessels button:focus  {
+.form-btn:focus  {
    border: none;
    outline:none;
 }
 
-.vessels button:active {
+.form-btn:active {
+   background: rgba(18,23,38,0.3);
+   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25) inset;
+}
+
+.clicked {
    background: rgba(18,23,38,0.3);
    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25) inset;
 }

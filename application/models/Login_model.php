@@ -8,7 +8,7 @@ class Login_model extends CI_Model {
 
      public function getUser($u, $p) {
           $this->db->select('login_gid, username');
-          $this->db->from('login');
+          $this->db->from('public.login');
           $this->db->where(array(
                'username' => $u,
                'password' => $p
@@ -16,6 +16,6 @@ class Login_model extends CI_Model {
 
           $query = $this->db->get();
 
-          return $query->result_array();
+          return $query->row_array();
      }
 }
