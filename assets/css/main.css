@@ -310,7 +310,7 @@ section p {
    height: 100%;
    width: 100%;
    -webkit-filter: blur(100) grayscale(10%); 
-   background-color: rgba(113, 90, 204, 0.562);
+   background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal {
@@ -395,6 +395,7 @@ section p {
    flex-direction: row;
    align-items: center;
    justify-content: center;
+   padding-bottom: 20px;
 }
 
 .action-buttons button {
@@ -421,6 +422,12 @@ section p {
 
 .animation-out {
    animation: out 0.5s forwards;
+}
+
+/* FORM */
+
+form input {
+   display: none;
 }
 
 @keyframes mymove {

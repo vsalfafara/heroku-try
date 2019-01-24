@@ -44,27 +44,42 @@ let edit = document.querySelector('#edit')
 
 function checkVoyageDetailsValues() {
    if (vnumber.value &&
-       year.value && 
-       month.value &&
-       day.value &&
-       vagent.value) {
-          let date = month.value + "|" + day.value + "|" + year.value
-          formData['voyage'] ={
-             'details': vnumber.value,
-             'date': date,
-             'agent': vagent.value
-          }
-          next.click()
+      year.value &&
+      month.value &&
+      day.value &&
+      vagent.value) {
+      let date = day.value + "-" + month.value + "-" + year.value
+      formData['voyage'] = {
+         'details': vnumber.value,
+         'date': date,
+         'agent': vagent.value
       }
+      console.log(formData['voyage'])
+      next.click()
+   }
 }
 
 function insertValues(formData) {
    formVessel.value = formData['vessel']
-   formVoyageNumber.value = formData['voyage']['details']
-   formDate.value = formData['voyage']['date']
-   formAgent.value = formData['voyage']['agent']
+   formVoyageNumber.value = formData['voyage'].details
+   formDate.value = formData['voyage'].date
+   formAgent.value = formData['voyage'].agent
    formRoute.value = formData['route']
    formFare.value = formData['fare']
+
+   let confirmVessel = document.querySelector('#confirm-vessel')
+   let confirmNumber = document.querySelector('#confirm-number')
+   let confirmDate = document.querySelector('#confirm-date')
+   let confirmAgent = document.querySelector('#confirm-agent')
+   let confirmRoute = document.querySelector('#confirm-route')
+   let confirmFare = document.querySelector('#confirm-fare')
+
+   confirmVessel.innerHTML = formVessel.value
+   confirmNumber.innerHTML = formVoyageNumber.value
+   confirmDate.innerHTML = formDate.value
+   confirmAgent.innerHTML = formAgent.value
+   confirmRoute.innerHTML = formRoute.value
+   confirmFare.innerHTML = formFare.value
 }
 
 // ATTACH PREVENT DEFAULT TO ALL BUTTONS 
@@ -76,19 +91,23 @@ buttons.forEach(function (button) {
 })
 
 // FORM DATA FOR VOYAGE DETAILS
-vnumber.addEventListener('focusout', function(){
+vnumber.addEventListener('focusout', function () {
    checkVoyageDetailsValues()
 })
-year.addEventListener('focusout', function() {
+year.addEventListener('focusout', function () {
    checkVoyageDetailsValues()
 })
-month.addEventListener('focusout', function(){
+month.addEventListener('focusout', function () {
    checkVoyageDetailsValues()
 })
-day.addEventListener('focusout', function(){
+day.addEventListener('focusout', function () {
    checkVoyageDetailsValues()
 })
-vagent.addEventListener('focusout', function(){
+
+vagent.addEventListener('focusin', function () {
+   this.value = agentName
+})
+vagent.addEventListener('focusout', function () {
    checkVoyageDetailsValues()
 })
 
@@ -134,12 +153,12 @@ fares.forEach(function (fare) {
    })
 })
 
-back.addEventListener('mouseover', function() {
+back.addEventListener('mouseover', function () {
    sections[currentItem].classList.remove('originLeft')
    sections[currentItem].classList.add('originRight')
 })
 
-next.addEventListener('mouseover', function() {
+next.addEventListener('mouseover', function () {
    sections[currentItem].classList.remove('originRight')
    sections[currentItem].classList.add('originLeft')
 })
@@ -155,8 +174,8 @@ back.addEventListener('click', function () {
       currentItem--
       sections[currentItem].classList.add('originLeft')
       sections[currentItem].classList.add('reveal')
-      
-      setTimeout(function() {
+
+      setTimeout(function () {
          sections[currentItem].classList.remove('originLeft')
          sections[currentItem].classList.add('originRight')
          // self.disabled = false;
@@ -176,7 +195,7 @@ next.addEventListener('click', function () {
       sections[currentItem].classList.add('originRight')
       sections[currentItem].classList.add('reveal')
 
-      setTimeout(function() {
+      setTimeout(function () {
          sections[currentItem].classList.remove('originRight')
          sections[currentItem].classList.add('originLeft')
          // self.disabled = false;
@@ -192,7 +211,7 @@ next.addEventListener('click', function () {
    }
 })
 
-edit.addEventListener('click', function(e) {
+edit.addEventListener('click', function (e) {
 
    e.preventDefault();
 

@@ -23,6 +23,9 @@ class Agent extends CI_Controller {
 		parent::__construct();
 		$this->load->model('vessel_model');
 		$this->load->model('route_model');
+		$this->load->model('fare_model');
+		$this->load->model('ticket_model');
+		date_default_timezone_set('Asia/Manila');
 	}
 
 	public function index()
@@ -30,6 +33,7 @@ class Agent extends CI_Controller {
 		if (sizeof($this->session->all_userdata()) > 1) {
 			$data['vessels'] = $this->vessel_model->getVessels();
 			$data['routes'] = $this->route_model->getRoutes($this->session->userdata('port_gid'));
+			$data['agent'] = $this->session->userdata('first_name') . ' ' . $this->session->userdata('last_name');
 
 			$this->load->view('extra/header');
 			$this->load->view('agent/index', $data);
@@ -41,6 +45,27 @@ class Agent extends CI_Controller {
 	}
 
 	public function insertTicket() {
+		$vessel = $this->input->post('vessel');
+		$number = $this->input->post('number');
+		$date = $this->input->post('date');
+		$agent = $this->input->post('ticketing-agent');
+		$route = $this->input->post('route');
+		$fare = $this->input->post('fare');
+		$port = $this->session->userdata('port_gid');
+
+		$price = $this->fare_model->getFare($route, $port, $fare);
+
+		$this->ticket_model->setTicket($vessel, 
+												 $number, 
+												 date("F d, Y", strtotime($date)),
+												 $agent,
+												 $route,
+												 $fare,
+												 $price,
+												 $port,
+												 $this->session->userdata('user_gid'));
+												 
+		redirect('agent/index', 'refresh');
 
 	}
 } 

@@ -61,7 +61,7 @@
             <div class="voyage">
                <p>Voyage Number</p>
                <div class="voyage-number">
-                  <input type="text" id="voyage-number">
+                  <input type="number" id="voyage-number">
                   <i class="material-icons">check</i>
                </div>
                <p>Voyage Date</p>
@@ -139,7 +139,7 @@
             <p>Vessel</p>
          </div>
          <div class="right">
-            <h4>MV ARGO DE ORO -III</h4>
+            <h4 id="confirm-vessel"></h4>
          </div>
       </div>
       <div class="booking-details">
@@ -153,9 +153,9 @@
          </div>
          <div class="right">
             <div class="sub-details">
-               <h4>81</h4>
-               <h4>09|23|18</h4>
-               <h4>PETER RUSSY ALFAFARA</h4>
+               <h4 id="confirm-number"></h4>
+               <h4 id="confirm-date"></h4>
+               <h4 id="confirm-agent"></h4>
             </div>
          </div>
       </div>
@@ -165,7 +165,7 @@
             <p>Route</p>
          </div>
          <div class="right">
-            <h4>San Jose - Libertad</h4>
+            <h4 id="confirm-route"></h4>
          </div>
       </div>
       <div class="booking-details">
@@ -174,7 +174,7 @@
             <p>Fare</p>
          </div>
          <div class="right">
-            <h4>Regular</h4>
+            <h4 id="confirm-fare"></h4>
          </div>
       </div>
    </div>
@@ -191,5 +191,8 @@
       </div>
    </form>
 </div>
+<script>
+   let agentName = '<?= $agent ?>'
+</script>
 <script src="<?= base_url()?>assets/js/main.js"></script>
 <script src="<?= base_url()?>assets/js/date.js"></script>

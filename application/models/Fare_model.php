@@ -6,17 +6,19 @@ class Fare_model extends CI_Model {
       $this->load->database();
    }
 
-   public function getUser($id) {
+   public function getFare($route, $port, $type) {
       $data = array(
-         'login_gid' => $id
+         'route_gid' => $route,
+         'port_gid' => $port,
+         'fair_type' => $type
       );
 
-      $this->db->select('*');
-      $this->db->from('public.user');
+      $this->db->select('price');
+      $this->db->from('public.fair');
       $this->db->where($data);
 
       $query = $this->db->get();
 
-      return $query->row_array();
+      return $query->row_array()['price'];
    }
 }
