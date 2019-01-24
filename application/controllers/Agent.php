@@ -40,13 +40,7 @@ class Agent extends CI_Controller {
 		}
 	}
 
-	public function getFares() {
-		$array = array(
-			'id' => 1,
-			'name' => 'name',
-			'email' => 'alfafara.vm@gmail.com'
-		);
+	public function insertTicket() {
 
-		print_r(json_encode($array, JSON_PRETTY_PRINT));
 	}
 } 

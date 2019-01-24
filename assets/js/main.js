@@ -1,8 +1,73 @@
 let formData = []
 
-// ATTACH PREVENT DEFAULT TO ALL BUTTONS 
+// ALL FORM BUTTONS 
 let buttons = document.querySelectorAll('.form-btn')
 
+// NAV BUTTONS 
+let back = document.querySelector('#back')
+let next = document.querySelector('#next')
+
+// VESSEL
+let vessels = document.querySelectorAll('.vessel')
+
+// VOYAGE DETAILS
+let vnumber = document.querySelector('#voyage-number')
+let day = document.querySelector('#day')
+let vagent = document.querySelector('#voyage-agent')
+
+// ROUTE
+let routes = document.querySelectorAll('.route')
+
+// FARE
+let fares = document.querySelectorAll('.fare')
+
+// SECTIONS
+let sections = document.querySelectorAll('section')
+
+// SECTION COUNTER
+let currentItem = 0;
+
+// MODAL
+let blur = document.querySelector('#blur')
+let modal = document.querySelector('.modal')
+
+// MODAL FORMs
+let formVessel = document.querySelector('#vessel')
+let formVoyageNumber = document.querySelector('#number')
+let formDate = document.querySelector('#date')
+let formAgent = document.querySelector('#ticketing-agent')
+let formRoute = document.querySelector('#route')
+let formFare = document.querySelector('#fare')
+
+// MODAL BUTTONS
+let edit = document.querySelector('#edit')
+
+function checkVoyageDetailsValues() {
+   if (vnumber.value &&
+       year.value && 
+       month.value &&
+       day.value &&
+       vagent.value) {
+          let date = month.value + "|" + day.value + "|" + year.value
+          formData['voyage'] ={
+             'details': vnumber.value,
+             'date': date,
+             'agent': vagent.value
+          }
+          next.click()
+      }
+}
+
+function insertValues(formData) {
+   formVessel.value = formData['vessel']
+   formVoyageNumber.value = formData['voyage']['details']
+   formDate.value = formData['voyage']['date']
+   formAgent.value = formData['voyage']['agent']
+   formRoute.value = formData['route']
+   formFare.value = formData['fare']
+}
+
+// ATTACH PREVENT DEFAULT TO ALL BUTTONS 
 buttons.forEach(function (button) {
    button.addEventListener('click', function (event) {
       event.preventDefault()
@@ -10,10 +75,24 @@ buttons.forEach(function (button) {
    })
 })
 
+// FORM DATA FOR VOYAGE DETAILS
+vnumber.addEventListener('focusout', function(){
+   checkVoyageDetailsValues()
+})
+year.addEventListener('focusout', function() {
+   checkVoyageDetailsValues()
+})
+month.addEventListener('focusout', function(){
+   checkVoyageDetailsValues()
+})
+day.addEventListener('focusout', function(){
+   checkVoyageDetailsValues()
+})
+vagent.addEventListener('focusout', function(){
+   checkVoyageDetailsValues()
+})
+
 // FORM DATA FOR VESSEL
-
-let vessels = document.querySelectorAll('.vessel')
-
 vessels.forEach(function (vessel) {
    vessel.addEventListener('click', function (event) {
       vessels.forEach(function (vessel) {
@@ -23,13 +102,11 @@ vessels.forEach(function (vessel) {
 
       formData['vessel'] = event.target.value
       console.info(formData)
+      next.click()
    })
 })
 
 // FORM DATA FOR ROUTE
-
-let routes = document.querySelectorAll('.route')
-
 routes.forEach(function (route) {
    route.addEventListener('click', function (event) {
       routes.forEach(function (route) {
@@ -39,13 +116,11 @@ routes.forEach(function (route) {
 
       formData['route'] = event.target.value
       console.info(formData)
+      next.click()
    })
 })
 
 // FORM DATA FOR FARE
-
-let fares = document.querySelectorAll('.fare')
-
 fares.forEach(function (fare) {
    fare.addEventListener('click', function (event) {
       fares.forEach(function (fare) {
@@ -55,17 +130,24 @@ fares.forEach(function (fare) {
 
       formData['fare'] = event.target.value
       console.info(formData)
+      next.click()
    })
 })
 
-let sections = document.querySelectorAll('section')
+back.addEventListener('mouseover', function() {
+   sections[currentItem].classList.remove('originLeft')
+   sections[currentItem].classList.add('originRight')
+})
 
-let back = document.querySelector('#back')
-let next = document.querySelector('#next')
-let currentItem = 0;
+next.addEventListener('mouseover', function() {
+   sections[currentItem].classList.remove('originRight')
+   sections[currentItem].classList.add('originLeft')
+})
 
 back.addEventListener('click', function () {
    if (currentItem > 0) {
+      let self = this;
+      // self.disabled = true;
       sections[currentItem].classList.remove('originLeft')
       sections[currentItem].classList.add('originRight')
       sections[currentItem].classList.remove('reveal')
@@ -73,11 +155,19 @@ back.addEventListener('click', function () {
       currentItem--
       sections[currentItem].classList.add('originLeft')
       sections[currentItem].classList.add('reveal')
+      
+      setTimeout(function() {
+         sections[currentItem].classList.remove('originLeft')
+         sections[currentItem].classList.add('originRight')
+         // self.disabled = false;
+      }, 800)
    }
 })
 
 next.addEventListener('click', function () {
    if (currentItem < 3) {
+      let self = this;
+      // self.disabled = true;
       sections[currentItem].classList.remove('originRight')
       sections[currentItem].classList.add('originLeft')
       sections[currentItem].classList.remove('reveal')
@@ -85,5 +175,29 @@ next.addEventListener('click', function () {
       currentItem++
       sections[currentItem].classList.add('originRight')
       sections[currentItem].classList.add('reveal')
+
+      setTimeout(function() {
+         sections[currentItem].classList.remove('originRight')
+         sections[currentItem].classList.add('originLeft')
+         // self.disabled = false;
+      }, 800)
    }
+   else {
+      blur.classList.add('blur')
+
+      modal.classList.remove('animation-out')
+      modal.classList.add('animation-in')
+
+      insertValues(formData)
+   }
+})
+
+edit.addEventListener('click', function(e) {
+
+   e.preventDefault();
+
+   blur.classList.remove('blur')
+
+   modal.classList.remove('animation-in')
+   modal.classList.add('animation-out')
 })
