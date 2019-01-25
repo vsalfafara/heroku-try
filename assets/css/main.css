@@ -37,6 +37,57 @@ nav i {
 
 }
 
+/* ASIDE */
+
+.overlay {
+   position: absolute;
+   height: 100%;
+   width: 100%;
+   z-index: 999;
+}
+
+aside {
+   position: absolute;
+   right: 0;
+   height: 100%;
+   width: 300px;
+   background-color: #11131D;
+   z-index: 999;
+   color: #fff;
+}
+
+aside i {
+   margin: 20px;
+   font-size: 32px !important;
+   cursor: pointer;
+}
+
+aside ul {
+   list-style: none;
+   margin: 0;
+   padding: 0;
+}
+
+aside ul li a {
+   padding: 10px 40px;
+   text-decoration: none;
+   color: #fff;
+   display: block;
+}
+
+aside ul li a:hover {
+   background: #FFF;
+   color: #11131D;
+}
+
+.side-hide {
+   display: none;
+}
+
+.overflow-hide {
+   overflow-y: hidden;
+}
+
 /* REMOVE THIS ONCE SIDEBAR DESIGN IS UP*/
 nav a {
    color: rgba(255, 255, 255, 0.7);
@@ -194,6 +245,7 @@ section p {
    font-weight: bold;
    font-size: 19px;
    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+   cursor: pointer;
 }
 
 .form-btn:nth-child(1) {
@@ -305,29 +357,33 @@ section p {
 }
 
 /* MODAL */
-.blur {
+/* .blur {
    position: absolute;
    height: 100%;
    width: 100%;
    -webkit-filter: blur(100) grayscale(10%); 
    background-color: rgba(0, 0, 0, 0.5);
-}
+} */
 
 .modal {
-   position: absolute;
+   position: fixed;
+   height: 100%;
+   width: 100%;
+   visibility: hidden;
+   display: none;
+   z-index: 999;
+}
+
+.modal .modal-content {
+   position: relative;
    top: -100px;
    left: 50%;
-   transform: translate(-50%, -50%);
+   transform: translate(-50%, -25%);
+   padding: 20px 0;
    width: 700px;
    background: #FFFFFF;
    border-radius: 10px;
    opacity: 0;
-   visibility: hidden;
-}
-
-.modal .container {
-   padding: 20px 0;
-   height: 100%;
 }
 
 .modal h3 {
@@ -395,7 +451,7 @@ section p {
    flex-direction: row;
    align-items: center;
    justify-content: center;
-   padding-bottom: 20px;
+   padding-top: 20px;
 }
 
 .action-buttons button {
@@ -424,9 +480,18 @@ section p {
    animation: out 0.5s forwards;
 }
 
+.show {
+   visibility: visible;
+   display: block;
+}
+
 /* FORM */
 
-form input {
+.modal form {
+   position: relative;
+}
+
+.modal form input {
    display: none;
 }
 
@@ -439,24 +504,20 @@ form input {
    from {
       opacity: 0;
       top: -100px;
-      visibility: hidden;
    }
    to {
       opacity: 1;
-      top: 50%;
-      visibility: visible;
+      top: 0%;
    }
 }
 
 @keyframes out {
    from {
       opacity: 1;
-      top: 50%;
-      visibility: visible;
+      top: 0%;
    }
    to {
       opacity: 0;
       top: -100px;
-      visibility: hidden;
    }
 }

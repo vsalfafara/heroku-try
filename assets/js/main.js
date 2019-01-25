@@ -25,11 +25,11 @@ let fares = document.querySelectorAll('.fare')
 let sections = document.querySelectorAll('section')
 
 // SECTION COUNTER
-let currentItem = 0;
+let currentItem = 0
 
 // MODAL
-let blur = document.querySelector('#blur')
 let modal = document.querySelector('.modal')
+let modalContent = document.querySelector('.modal-content')
 
 // MODAL FORMs
 let formVessel = document.querySelector('#vessel')
@@ -41,6 +41,24 @@ let formFare = document.querySelector('#fare')
 
 // MODAL BUTTONS
 let edit = document.querySelector('#edit')
+
+// ASIDE
+let overlay = document.querySelector('#overlay')
+let body = document.querySelector('body')
+let aside = document.querySelector('aside')
+let sideOpen = document.querySelector('#side-open')
+let sideClose = document.querySelector('#side-close')
+
+sideOpen.addEventListener('click', function() {
+   overlay.classList.add('overlay')
+   aside.classList.remove('side-hide')
+   body.classList.add('overflow-hide')
+})
+sideClose.addEventListener('click', function() {
+   overlay.classList.remove('overlay')
+   aside.classList.add('side-hide')
+   body.classList.remove('overflow-hide')
+})
 
 function checkVoyageDetailsValues() {
    if (vnumber.value &&
@@ -165,8 +183,8 @@ next.addEventListener('mouseover', function () {
 
 back.addEventListener('click', function () {
    if (currentItem > 0) {
-      let self = this;
-      // self.disabled = true;
+      let self = this
+      // self.disabled = true
       sections[currentItem].classList.remove('originLeft')
       sections[currentItem].classList.add('originRight')
       sections[currentItem].classList.remove('reveal')
@@ -178,15 +196,15 @@ back.addEventListener('click', function () {
       setTimeout(function () {
          sections[currentItem].classList.remove('originLeft')
          sections[currentItem].classList.add('originRight')
-         // self.disabled = false;
+         // self.disabled = false
       }, 800)
    }
 })
 
 next.addEventListener('click', function () {
    if (currentItem < 3) {
-      let self = this;
-      // self.disabled = true;
+      let self = this
+      // self.disabled = true
       sections[currentItem].classList.remove('originRight')
       sections[currentItem].classList.add('originLeft')
       sections[currentItem].classList.remove('reveal')
@@ -198,14 +216,15 @@ next.addEventListener('click', function () {
       setTimeout(function () {
          sections[currentItem].classList.remove('originRight')
          sections[currentItem].classList.add('originLeft')
-         // self.disabled = false;
+         // self.disabled = false
       }, 800)
    }
    else {
-      blur.classList.add('blur')
 
-      modal.classList.remove('animation-out')
-      modal.classList.add('animation-in')
+      modal.classList.add('show')
+
+      modalContent.classList.remove('animation-out')
+      modalContent.classList.add('animation-in')
 
       insertValues(formData)
    }
@@ -213,10 +232,13 @@ next.addEventListener('click', function () {
 
 edit.addEventListener('click', function (e) {
 
-   e.preventDefault();
+   e.preventDefault()
 
-   blur.classList.remove('blur')
+   modalContent.classList.remove('animation-in')
+   modalContent.classList.add('animation-out')
+})
 
-   modal.classList.remove('animation-in')
-   modal.classList.add('animation-out')
+modalContent.addEventListener('animationend', function() {
+   if (modalContent.classList.contains('animation-out'))
+      modal.classList.remove('show')
 })
