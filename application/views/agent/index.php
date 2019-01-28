@@ -1,24 +1,4 @@
 
-<div id="overlay">
-   <aside class="side-hide">
-      <i id="side-close" class="material-icons">close</i>
-      <ul>
-         <li>
-            <a href="<?= base_url()?>login/logout">Logout</a>
-         </li>
-         <li>
-            <a href="#">Ticket History</a>
-         </li>
-      </ul>
-   </aside>
-</div>
-<nav>
-   <div class="container">
-      <p>Solex Argo Ferry Corporation</p>
-      <!-- REMOVE A TAG ONCE SIDEBAR DESIGN IS UP -->
-      <i id="side-open" class="material-icons">dehaze</i>
-   </div>
-</nav>
 <div class="header">
    <div class="port-name">
       <h1>San Jose Mindoro Port</h1>
@@ -204,5 +184,4 @@
 <script>
    let agentName = '<?= $agent ?>'
 </script>
-<script src="<?= base_url()?>assets/js/main.js"></script>
 <script src="<?= base_url()?>assets/js/date.js"></script>

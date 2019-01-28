@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Source+Sans+Pro');
 
+html, body {
+   height: 100%;
+}
 body {
    margin: 0;
    padding: 0;
-   height: 100%;
    font-family: 'Montserrat', sans-serif;
    transition: 0.3s;
 }
@@ -51,7 +53,7 @@ aside {
    right: 0;
    height: 100%;
    width: 300px;
-   background-color: #11131D;
+   background-image: linear-gradient(to bottom, #5bc0be, #47a3b1, #3f879e, #3d6b86, #3a506b);
    z-index: 999;
    color: #fff;
 }
@@ -62,22 +64,29 @@ aside i {
    cursor: pointer;
 }
 
+aside h1 {
+   text-align: center;
+   text-transform: uppercase;
+}
+
 aside ul {
    list-style: none;
    margin: 0;
    padding: 0;
+   margin-top: 50px;
 }
 
 aside ul li a {
    padding: 10px 40px;
    text-decoration: none;
-   color: #fff;
+   color: #FFFEFE;
    display: block;
+   font-family: 'Source Sans Pro', sans-serif;
+   font-size: 1.2em;
 }
 
 aside ul li a:hover {
-   background: #FFF;
-   color: #11131D;
+   color: rgba(18,23,38, 0.3);
 }
 
 .side-hide {
@@ -101,6 +110,16 @@ nav a {
    background: #3A506B;
    color: rgba(255, 255, 255, 0.7);
    padding-bottom: 15px;
+}
+
+.header .history h1 {
+   color: #5BC0BE;
+   text-align: center;
+   font-size: 1.3em;
+   font-weight: bolder;
+   margin: 0 0 30px 0;
+   font-family: 'Source Sans Pro', sans-serif;
+   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .port-name {
@@ -498,6 +517,123 @@ section p {
 @keyframes mymove {
   from {top: 0px;}
   to {top: 200px;}
+}
+
+/* HISTORY */
+
+.history-table {
+   padding: 50px 100px;
+}
+
+.history-table .history-form {
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+   margin-bottom: 50px;
+}
+
+.form-group {
+   margin: 0 20px;
+   font-family: sans-serif;
+}
+
+.form-group label {
+   font-weight: bold;
+   font-size: 0.9em;
+   margin: 0 10px;
+}
+
+.form-group input {
+   height: 30px;
+   width: 250px;
+}
+
+.history-table table {
+   width: 100%;
+   text-align: left;
+   border-collapse: collapse;
+}
+
+.history-table table th {
+   padding: 15px 50px;
+   margin-bottom: 30px;
+   background: #5BC0BE;
+   color: #FFFFFF;
+}
+
+.history-table table th span {
+   font-size: 0.7em;
+}
+
+.history-table table td {
+   padding: 15px 50px;
+   color: rgba(18,23,38,0.6);
+   font-family: 'Source Sans Pro', sans-serif;
+   font-weight: bold;
+}
+
+.history-table table tbody tr:nth-child(odd) {
+   background: rgba(18,23,38,0.3);
+}
+.history-table table tbody tr:nth-child(even) {
+   background: rgba(219,223,228,0.6);
+}
+
+tbody:before {
+   content: "-";
+   display: block;
+   line-height: 2em;
+   color: transparent;
+}
+/* 
+.history-header, .history-data {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   padding: 0 30px;
+}
+
+.history-header {
+   background: #5BC0BE;
+   color: #FFFFFF;
+   font-weight: bold;
+   text-align: center;
+   margin-bottom: 30px;
+}
+
+.history-header span {
+   font-size: 0.7em;
+}
+
+.history-data {
+   color: rgba(18,23,38,0.6);
+   font-family: 'Source Sans Pro', sans-serif;
+   font-weight: bold;
+}
+
+.history-data:nth-child(odd) {
+   background: rgba(18,23,38,0.3);
+}
+.history-data:nth-child(even) {
+   background: rgba(219,223,228,0.6);
+} */
+
+/* FOOTER */
+
+footer {
+   position: absolute;
+   bottom: 0;  
+   width: 100%;
+   padding: 8px 20px;
+   background: #3A506B;
+   color: rgba(255, 255, 255, 0.7);
+   box-sizing: border-box;
+}
+
+footer p {
+   margin: 0;
+   font-family: 'Source Sans Pro', sans-serif;
+   font-size: 0.9em;
 }
 
 @keyframes in {

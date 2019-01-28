@@ -35,8 +35,22 @@ class Agent extends CI_Controller {
 			$data['routes'] = $this->route_model->getRoutes($this->session->userdata('port_gid'));
 			$data['agent'] = $this->session->userdata('first_name') . ' ' . $this->session->userdata('last_name');
 
-			$this->load->view('extra/header');
+			$this->load->view('extra/header', $data);
 			$this->load->view('agent/index', $data);
+			$this->load->view('extra/footer');
+		}
+		else {
+			redirect('login/index', 'refresh');
+		}
+	}
+
+	public function history() {
+		if (sizeof($this->session->all_userdata()) > 1) {
+			$data['tickets'] = $this->ticket_model->getUserTickets($this->session->userdata('user_gid'));
+			$data['agent'] = $this->session->userdata('first_name') . ' ' . $this->session->userdata('last_name');
+
+			$this->load->view('extra/header', $data);
+			$this->load->view('history', $data);
 			$this->load->view('extra/footer');
 		}
 		else {
@@ -52,6 +66,8 @@ class Agent extends CI_Controller {
 		$route = $this->input->post('route');
 		$fare = $this->input->post('fare');
 		$port = $this->session->userdata('port_gid');
+		$insert_date = date('Y-m-d H:i:s', strtotime('now'));
+		$ref_num = strtotime('now');
 
 		$price = $this->fare_model->getFare($route, $port, $fare);
 
@@ -63,9 +79,10 @@ class Agent extends CI_Controller {
 												 $fare,
 												 $price,
 												 $port,
-												 $this->session->userdata('user_gid'));
+												 $this->session->userdata('user_gid'),
+												 $insert_date,
+												 $ref_num);
 												 
 		redirect('agent/index', 'refresh');
-
 	}
 } 
