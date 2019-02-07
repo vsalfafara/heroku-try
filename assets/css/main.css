@@ -546,6 +546,7 @@ section p {
 .form-group input {
    height: 30px;
    width: 250px;
+   padding: 5px 10px;
 }
 
 .history-table table {

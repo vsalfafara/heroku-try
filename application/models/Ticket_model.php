@@ -8,7 +8,6 @@ class Ticket_model extends CI_Model {
 
    public function setTicket($vessel, $number, $date, $agent, $route, $fare, $price, $port, $user, $insert_date, $ref) {
       $data = array(
-         'ticket_gid' => 2,
          'voyage_num' => $number,
          'voyage_date' => $date,
          'port_gid' => $port,

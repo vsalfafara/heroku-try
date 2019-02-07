@@ -49,7 +49,11 @@ class Login extends CI_Controller {
 			if ($result) {
 				$result = $this->user_model->getUser($result['login_gid']);
 				$this->session->set_userdata($result);
-				redirect('/agent/index', 'refresh');
+
+				if ($result['role'] == 'SUPERADMIN')
+					redirect('/admin/index', 'refresh');
+				else
+					redirect('/agent/index', 'refresh');
 			}
 			else {
 				$data['login_error'] ="Invalid Login";
