@@ -32,6 +32,8 @@ class Admin extends CI_Controller {
    }
 
    public function index() {
+		
+		if (sizeof($this->session->all_userdata()) > 1) {
 		$data['admin'] = $this->session->userdata('first_name') . ' ' . $this->session->userdata('last_name');
 		$data['username'] = $this->session->userdata('user_gid');
 		$data['tables'] = $this->table_model->getTables();
@@ -41,6 +43,10 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/header.php', $data);
       $this->load->view('admin/admin.php', $data);
       $this->load->view('admin/footer.php');
+		}
+		else {
+			redirect('login/index', 'refresh');
+		}
 	}
 	
 	public function fetchTableData() {
