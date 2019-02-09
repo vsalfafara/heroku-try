@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+header('Access-Control-Allow-Origin: *');
 
 class Admin extends CI_Controller {
 
@@ -25,13 +26,30 @@ class Admin extends CI_Controller {
 		$this->load->model('route_model');
 		$this->load->model('fare_model');
 		$this->load->model('ticket_model');
+		$this->load->model('table_model');
+		
 		date_default_timezone_set('Asia/Manila');
    }
 
    public function index() {
-     
-      $this->load->view('admin/header.php');
-      $this->load->view('admin/admin.php');
-      $this->load->view('admin/scripts.php');
-   }
+		$data['admin'] = $this->session->userdata('first_name') . ' ' . $this->session->userdata('last_name');
+		$data['username'] = $this->session->userdata('user_gid');
+		$data['tables'] = $this->table_model->getTables();
+		$data['admin_link'] = 'active';
+		$data['dashboard'] = '';
+
+		$this->load->view('admin/header.php', $data);
+      $this->load->view('admin/admin.php', $data);
+      $this->load->view('admin/footer.php');
+	}
+	
+	public function fetchTableData() {
+		$table = trim(file_get_contents("php://input"));
+
+		$data['table'] = $this->table_model->getTableData($table);
+
+		$view = $this->load->view('admin/selected_table.php', $data, true);
+
+		echo $view;
+	}
 }
