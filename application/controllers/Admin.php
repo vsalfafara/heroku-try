@@ -44,9 +44,13 @@ class Admin extends CI_Controller {
 	}
 	
 	public function fetchTableData() {
-		$table = trim(file_get_contents("php://input"));
+		$target = trim(file_get_contents("php://input"));
+		// $table = explode('.', $target, 2)[1];
+		$table = 'login';
 
-		$data['table'] = $this->table_model->getTableData($table);
+		$data['columns'] = $this->table_model->getColumns($table);
+		
+		$data['table'] = $this->table_model->getTableData($target);
 
 		$view = $this->load->view('admin/selected_table.php', $data, true);
 

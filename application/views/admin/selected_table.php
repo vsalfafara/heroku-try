@@ -1,13 +1,13 @@
 <table>
    <thead>
       <tr>
-         <?php foreach($table[0] as $key => $data) {?>
-            <th><?= $key ?></th>
+         <?php foreach($columns as $column) {?>
+            <th><?= $column['column_name'] ?></th>
          <?php } ?>
       </tr>
    </thead>
    <tbody>
-      <?php foreach($table as $key => $data) {?>
+      <?php foreach($table as $data) {?>
          <tr>
             <?php foreach($data as $value) { ?>
                <td><?= $value ?></td>

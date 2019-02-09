@@ -20,10 +20,25 @@ class Table_model extends CI_Model {
       return $query->result_array();
    }
 
-   public function getTableData($table) {
+   public function getColumns($table) {
+      $data = array(
+         'table_schema' => 'public',
+         'table_name' => $table
+      );
+
+      $this->db->select('column_name');
+      $this->db->from('information_schema.columns');
+      $this->db->where($data);
+
+      $query = $this->db->get();
+
+      return $query->result_array();
+   }
+
+   public function getTableData($target) {
       
       $this->db->select('*');
-      $this->db->from($table);
+      $this->db->from($target);
 
       $query = $this->db->get();
 
