@@ -22,7 +22,7 @@
 				</div>
 			</div>
 			<ul>
-				<li><a href="<?= base_url()?>admin"><i class="material-icons">insert_chart</i>Administration</a></li>
+				<li><a href="<?= base_url()?>admin/index"><i class="material-icons">insert_chart</i>Administration</a></li>
 				<li><a href="<?= base_url()?>admin/dashboard"><i class="material-icons">insert_chart</i>Dashboard</a></li>
 				<li><a href="<?= base_url()?>login/logout"><i class="material-icons">exit_to_app</i>Logout</a></li>
 			</ul>
