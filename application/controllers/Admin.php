@@ -50,15 +50,24 @@ class Admin extends CI_Controller {
 	}
 	
 	public function fetchTableData() {
-		$target = trim(file_get_contents("php://input"));
-		$table = explode('.', $target, 2)[1];
+		$data['target'] = trim(file_get_contents("php://input"));
+		$table = explode('.', $data['target'], 2)[1];
 
 		$data['columns'] = $this->table_model->getColumns($table);
-		
-		$data['table'] = $this->table_model->getTableData($target);
+		$data['table'] = $this->table_model->getTableData($data['target']);
 
 		$view = $this->load->view('admin/selected_table.php', $data, true);
 
 		echo $view;
+	}
+
+	public function filterTable() {
+		// $data['target'] = trim(file_get_contents("php://input"));
+		print_r(json_encode($this->input->post())); die;
+		$table = explode('.', $data['target'], 2)[1];
+
+		$data['columns'] = $this->table_model->getColumns($table);
+
+		print_r(json_encode($data));
 	}
 }
