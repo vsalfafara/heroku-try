@@ -10,11 +10,11 @@
          <?php } ?>
       </tr>
    </thead>
-   <tbody>
-      <tr>
+   <tbody id="filter">
+      <tr id="search-row">
          <?php foreach($columns as $column) {?>
             <?php if ($column['column_name'] != 'password') {?>
-               <td><input type="text" name="column[]" class="table-text-search" placeholder="Search <?= $column['column_name'] ?>"></td>
+               <td><input type="text" name="<?= $column['column_name'] ?>" class="table-text-search" placeholder="Search <?= $column['column_name'] ?>"></td>
             <?php } ?>
          <?php } ?>
       </tr>
@@ -29,6 +29,3 @@
       <?php } ?>
    </tbody>
 </table>
-<script>
-   console.log('s')
-</script>

@@ -45,7 +45,17 @@ class Table_model extends CI_Model {
       return $query->result_array();
    }
 
-   public function filter() {
+   public function filter($filter) {
+      $data = array (
+         $filter['column'] => $filter['searchTerm'],
+      );
       
+      $this->db->select('*');
+      $this->db->from($filter['target']);
+      // $this->db->where($data);
+      $this->db->like($data);
+      $query = $this->db->get();
+
+      return $query->num_rows() ? $query->result_array() : false;
    }
 }

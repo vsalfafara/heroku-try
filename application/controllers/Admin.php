@@ -62,12 +62,16 @@ class Admin extends CI_Controller {
 	}
 
 	public function filterTable() {
-		// $data['target'] = trim(file_get_contents("php://input"));
-		print_r(json_encode($this->input->post())); die;
-		$table = explode('.', $data['target'], 2)[1];
+		$data['target'] = $this->input->post('table');
+		$data['column'] = $this->input->post('column');
+		$data['searchTerm'] = $this->input->post('searchTerm');
 
-		$data['columns'] = $this->table_model->getColumns($table);
+		$data['table'] = $this->table_model->filter($data);
 
-		print_r(json_encode($data));
+		if ($data['table'])
+			$view = $this->load->view('admin/search_table.php', $data, true);
+		else 
+			$view = '<tr><td>No Results Found</td></tr?';
+		echo $view;
 	}
 }
