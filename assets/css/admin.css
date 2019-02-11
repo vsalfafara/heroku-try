@@ -201,8 +201,19 @@ aside ul li i {
    color: transparent;
 }
 
-.selected-table table tbody tr:nth-child(odd) {
+.selected-table table tbody tr:nth-child(even) {
    background: rgba(219,223,228, .6);
+}
+
+.selected-table table tbody tr:first-child {
+   background: transparent;
+}
+
+.selected-table table tbody tr:first-child td:first-child {
+   border-top: 1px solid #E5E5E5;
+   border-left: 1px solid #E5E5E5;
+   border-right: 1px solid #E5E5E5;
+   border-bottom: 2px solid rgba(219,223,228, .6);
 }
 
 .selected-table table tbody tr td {
@@ -217,40 +228,19 @@ aside ul li i {
    box-sizing: border-box;
    width: 100%;
    padding: 10px;
+   border: 1px solid #E5E5E5;
 }
 
 .selected-table tbody .table-text-search:focus {
    outline: none;
 }
 
-/* SELECTED TABLE PARTIAL VIEW */
-
-.search {
-   position: relative;
-   width: 50%;
-   display: flex;
-   align-items: center;
-   margin-bottom: 20px;
-   border: 1px solid #747D88;
-   padding: 5px;
-   box-sizing: border-box;
+.selected-table tr td:first-child {
+   min-width: 40px;
 }
 
-.search i {
-   margin: auto 10px;
-   color: rgba(58,80,107, 0.8);
-   user-select: none;
-}
-
-.search input {
-   border: none;
-   width: 100%;
-}
-
-.search input::placeholder {
-   color: #747D88;
-}
-
-.search input:focus {
-   outline: none;
+#filter i {
+   font-size: 18px;
+   text-decoration: none;
+   color: rgba(58,80,107,.8);
 }

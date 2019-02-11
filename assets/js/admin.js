@@ -3,7 +3,7 @@ let selected_table = document.querySelector('.selected-table')
 let injection = document.querySelector('#injection')
 let loader = document.createElement('div')
 
-function showLoader(){
+function showLoader() {
    loader.className = 'loader'
    selected_table.appendChild(loader)
    selected_table.style.userSelect = 'none'
@@ -33,7 +33,7 @@ let checkColumns = function () {
                body: formData
             })
                .then(res => res.text())
-               .then(function(html) {
+               .then(function (html) {
                   let filter = document.querySelector('#filter')
                   let children = document.querySelectorAll('#filter >tr:not(#search-row)')
                   console.log(html)
@@ -68,19 +68,3 @@ buttons.forEach(function (button) {
          .catch(error => console.log(error))
    })
 })
-
-// let search = document.querySelector('#search')
-
-// search.addEventListener('keyup', function (e) {
-//    if (table_hidden = document.querySelector('#table-name')) {
-//       if (e.keyCode === 13) {
-//          fetch('filterTable', {
-//             method: 'POST',
-//             body: table_hidden.value
-//          })
-//             .then(res => res.json())
-//             .then(data => console.log(data))
-//             .catch(error => console.log(error))
-//       }
-//    }
-// })

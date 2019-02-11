@@ -51,11 +51,14 @@ class Admin extends CI_Controller {
 	
 	public function fetchTableData() {
 		$data['target'] = trim(file_get_contents("php://input"));
-		$table = explode('.', $data['target'], 2)[1];
+		$data['table'] = explode('.', $data['target'], 2)[1];
+		$data['link']['delete'] = base_url() .  $data['table'] . 'action/delete/';
+		$data['link']['edit'] = base_url() .  $data['table'] . 'action/edit/';
 
-		$data['columns'] = $this->table_model->getColumns($table);
-		$data['table'] = $this->table_model->getTableData($data['target']);
+		$data['columns'] = $this->table_model->getColumns($data['table']);
+		$data['table_values'] = $this->table_model->getTableData($data['target']);
 
+		$data['table'] = ucfirst($data['table']);
 		$view = $this->load->view('admin/selected_table.php', $data, true);
 
 		echo $view;
@@ -63,12 +66,16 @@ class Admin extends CI_Controller {
 
 	public function filterTable() {
 		$data['target'] = $this->input->post('table');
+		$data['table'] = explode('.', $data['target'], 2)[1];
 		$data['column'] = $this->input->post('column');
 		$data['searchTerm'] = $this->input->post('searchTerm');
+		$data['link']['delete'] = base_url() .  $data['table'] . 'action/delete/';
+		$data['link']['edit'] = base_url() .  $data['table'] . 'action/edit/';
 
-		$data['table'] = $this->table_model->filter($data);
+		$data['table'] = ucfirst(explode('.', $data['target'])[1]);
+		$data['table_values'] = $this->table_model->filter($data);
 
-		if ($data['table'])
+		if ($data['table_values'])
 			$view = $this->load->view('admin/search_table.php', $data, true);
 		else 
 			$view = '<tr><td>No Results Found</td></tr?';

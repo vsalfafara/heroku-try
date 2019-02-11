@@ -7,11 +7,6 @@
       </div>
    </div>
    <div class="selected-table">
-      <h3>Selected Table</h3>
-      <div class="search">
-         <i class="material-icons">search</i>
-         <input type="text" name="search" id="search" placeholder="Search">
-      </div>
       <div id="injection">
       </div>
    </div>
