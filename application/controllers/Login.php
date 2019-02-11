@@ -61,7 +61,7 @@ class Login extends CI_Controller {
 			}
 		}
 		else
-			$this->load->view('login');
+		redirect('/agent/index', 'refresh');
 	}
 
 	public function logout() {
