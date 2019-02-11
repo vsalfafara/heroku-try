@@ -181,9 +181,11 @@ aside ul li i {
 }
 
 .selected-table table {
-   width: 100%;
+   min-width: 100%;
    text-align: left;
    border-collapse: collapse;
+   display: inline-block;
+   margin-right: 25px; 
 }
 
 .selected-table table thead tr th {
