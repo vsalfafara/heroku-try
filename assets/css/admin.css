@@ -186,6 +186,7 @@ aside ul li i {
    border-collapse: collapse;
    display: inline-block;
    margin-right: 25px; 
+   font-size: 14px;
 }
 
 .selected-table table thead tr th {
@@ -215,7 +216,7 @@ aside ul li i {
 .selected-table tbody .table-text-search {
    box-sizing: border-box;
    width: 100%;
-   padding: 10px 20px;
+   padding: 10px;
 }
 
 .selected-table tbody .table-text-search:focus {
