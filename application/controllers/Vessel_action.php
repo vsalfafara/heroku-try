@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class RouteAction extends CI_Controller {
+class Vessel_action extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.

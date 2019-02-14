@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class UserAction extends CI_Controller {
+class Ticket_action extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.

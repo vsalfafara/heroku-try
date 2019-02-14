@@ -52,8 +52,8 @@ class Admin extends CI_Controller {
 	public function fetchTableData() {
 		$data['target'] = trim(file_get_contents("php://input"));
 		$data['table'] = explode('.', $data['target'], 2)[1];
-		$data['link']['delete'] = base_url() .  $data['table'] . 'action/delete/';
-		$data['link']['edit'] = base_url() .  $data['table'] . 'action/edit/';
+		$data['link']['delete'] = base_url() .  $data['table'] . '_action/delete/';
+		$data['link']['edit'] = base_url() .  $data['table'] . '_action/edit/';
 
 		$data['columns'] = $this->table_model->getColumns($data['table']);
 		$data['table_values'] = $this->table_model->getTableData($data['target']);

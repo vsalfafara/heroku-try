@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class PortAction extends CI_Controller {
+class Fair_action extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
