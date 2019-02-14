@@ -25,11 +25,11 @@ class RouteAction extends CI_Controller {
 		date_default_timezone_set('Asia/Manila');
    }
    
-   public function edit($id) {
+   public function edit($id = null) {
       echo $id;
    }
 
-   public function delete($id) {
+   public function delete($id = null) {
       echo $id;
    }
 } 

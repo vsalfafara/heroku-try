@@ -29,11 +29,11 @@ class LoginAction extends CI_Controller {
 		echo 'index';
 	}
    
-   public function edit($id) {
+   public function edit($id = null) {
       echo $id;
    }
 
-   public function delete($id) {
+   public function delete($id = null) {
       echo $id;
    }
 } 
