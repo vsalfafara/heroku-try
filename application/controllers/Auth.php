@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login extends CI_Controller {
+class Auth extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -21,17 +21,23 @@ class Login extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
+		
 		$this->load->model('login_model');
 		$this->load->model('user_model');
+
+		if ($this->uri->uri_string() != 'auth/logout') {
+			if (sizeof($this->session->all_userdata()) > 1){
+				if ($this->session->role != 'SUPERADMIN')
+					redirect('/agent/index', 'refresh');
+				else
+					redirect('/admin/index', 'refresh');
+			}
+		}
 	}
 
 	public function index()
 	{
-		if (sizeof($this->session->all_userdata()) > 1){
-			redirect('/agent/index', 'refresh');
-		}
-		else
-			$this->load->view('login');
+		$this->load->view('login');
 	}
 
 	public function login() {
@@ -56,26 +62,29 @@ class Login extends CI_Controller {
 					redirect('/agent/index', 'refresh');
 			}
 			else {
-				$data['login_error'] ="Invalid Login";
+				$data['login_error'] ="Invalid Credentials";
 				$this->load->view('login', $data);
 			}
 		}
 		else
-		redirect('/agent/index', 'refresh');
+			$this->load->view('login');
 	}
 
 	public function logout() {
 		$keys = array(
 			'__ci_last_regenerate',
+			'user_gid',
+			'first_name',
+			'last_name',
+			'contact',
+			'role',
 			'login_gid',
-			'username',
-			'password',
+			'port_gid',
 		);
 
-		$this->session->unset_userdata('login_gid');
-		$this->session->unset_userdata('username');
-		$this->session->unset_userdata('password');
-		$this->session->sess_destroy();
-		redirect('login/index', 'refresh');
+		$this->session->unset_userdata($keys);
+        $this->session->sess_destroy();
+
+		redirect('auth/index', 'refresh');
 	}
 } 

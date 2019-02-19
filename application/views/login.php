@@ -24,7 +24,7 @@
 					if (isset($login_error)) echo '<p>'.$login_error.'</p>';
 				?>
 				<?= validation_errors(); ?>
-				<?= form_open('login/login'); ?>
+				<?= form_open('auth/login'); ?>
 					<div class="flex">
 						<i class="material-icons">perm_identity</i>
 						<input type="text" name="username" placeholder="Enter Your Username">

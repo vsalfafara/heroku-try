@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Source+Sans+Pro');
 
-html, body {
-   height: 100%;
+html {
+   height: auto;
 }
 body {
    margin: 0;
    padding: 0;
    font-family: 'Montserrat', sans-serif;
    transition: 0.3s;
+   height: 100%;
 }
 
 .blur {
@@ -160,16 +161,6 @@ nav a {
 
 /* NAV BUTTONS*/
 
-.nav-btns {
-   position: absolute;
-   left: 50%;
-   top: 60%;
-   transform: translate(-50%, -50%);
-   width: 950px;
-   display: flex;
-   justify-content: space-between;
-}
-
 .btn-nav {
    display: inline-block;
    border-radius: 100%;
@@ -183,6 +174,7 @@ nav a {
    font-weight: bold;
    line-height: 83px;
    cursor: pointer;
+   align-self: center;
 }
 
 .btn-nav:active {
@@ -197,19 +189,24 @@ nav a {
 .form-slide {
    position: relative;
    height: 403px;
-   width: 703px;
+   width: 900px;
    margin: 50px auto;
    overflow: hidden;
    display: flex;
    flex-direction: row;
+   justify-content: space-between;
 }
 
 /* DASHBOARD */
 
+.agent-selection-panel {
+   height: 400px;
+   width: 700px;
+}
+
 section {
    height: 400px;
    width: 700px;
-   margin: auto;
    background: rgba(219,223,228, .6);
    font-family: 'Source Sans Pro', sans-serif;
    border-radius: 4px;
@@ -622,8 +619,7 @@ tbody:before {
 /* FOOTER */
 
 footer {
-   position: absolute;
-   bottom: 0;  
+   position: relative;
    width: 100%;
    padding: 8px 20px;
    background: #3A506B;

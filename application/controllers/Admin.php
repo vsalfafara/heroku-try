@@ -29,6 +29,13 @@ class Admin extends CI_Controller {
 		$this->load->model('table_model');
 		
 		date_default_timezone_set('Asia/Manila');
+		
+		if (sizeof($this->session->all_userdata()) > 1){
+			if ($this->session->role != 'SUPERADMIN') {
+				echo "not allowed";
+				exit;
+			}
+		}
    }
 
    public function index() {

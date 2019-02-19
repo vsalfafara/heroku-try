@@ -20,7 +20,7 @@
 					<a href="<?= base_url()?>agent/history">Ticket History</a>
 				</li>
 				<li>
-					<a href="<?= base_url()?>login/logout">Logout</a>
+					<a href="<?= base_url()?>auth/logout">Logout</a>
 				</li>
 			</ul>
 		</aside>
