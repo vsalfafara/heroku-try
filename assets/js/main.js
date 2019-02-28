@@ -6,6 +6,7 @@ let buttons = document.querySelectorAll('.form-btn')
 // NAV BUTTONS 
 let back = document.querySelector('#back')
 let next = document.querySelector('#next')
+next.style.visibility = 'hidden'
 
 // VESSEL
 let vessels = document.querySelectorAll('.vessel')
@@ -49,12 +50,12 @@ let aside = document.querySelector('aside')
 let sideOpen = document.querySelector('#side-open')
 let sideClose = document.querySelector('#side-close')
 
-sideOpen.addEventListener('click', function() {
+sideOpen.addEventListener('click', function () {
    overlay.classList.add('overlay')
    aside.classList.remove('side-hide')
    body.classList.add('overflow-hide')
 })
-sideClose.addEventListener('click', function() {
+sideClose.addEventListener('click', function () {
    overlay.classList.remove('overlay')
    aside.classList.add('side-hide')
    body.classList.remove('overflow-hide')
@@ -72,8 +73,8 @@ function checkVoyageDetailsValues() {
          'date': date,
          'agent': vagent.value
       }
-      console.log(formData['voyage'])
-      next.click()
+      // next.click()
+      next.style.visibility = 'visible'
    }
 }
 
@@ -138,8 +139,8 @@ vessels.forEach(function (vessel) {
       this.classList.add('clicked')
 
       formData['vessel'] = event.target.value
-      console.info(formData)
-      next.click()
+      // next.click()
+      next.style.visibility = 'visible'
    })
 })
 
@@ -152,8 +153,8 @@ routes.forEach(function (route) {
       this.classList.add('clicked')
 
       formData['route'] = event.target.value
-      console.info(formData)
-      next.click()
+      // next.click()
+      next.style.visibility = 'visible'
    })
 })
 
@@ -166,8 +167,8 @@ fares.forEach(function (fare) {
       this.classList.add('clicked')
 
       formData['fare'] = event.target.value
-      console.info(formData)
-      next.click()
+      // next.click()
+      next.style.visibility = 'visible'
    })
 })
 
@@ -203,8 +204,6 @@ back.addEventListener('click', function () {
 
 next.addEventListener('click', function () {
    if (currentItem < 3) {
-      let self = this
-      // self.disabled = true
       sections[currentItem].classList.remove('originRight')
       sections[currentItem].classList.add('originLeft')
       sections[currentItem].classList.remove('reveal')
@@ -216,7 +215,6 @@ next.addEventListener('click', function () {
       setTimeout(function () {
          sections[currentItem].classList.remove('originRight')
          sections[currentItem].classList.add('originLeft')
-         // self.disabled = false
       }, 800)
    }
    else {
@@ -228,6 +226,7 @@ next.addEventListener('click', function () {
 
       insertValues(formData)
    }
+   next.style.visibility = 'hidden'
 })
 
 edit.addEventListener('click', function (e) {
@@ -238,7 +237,7 @@ edit.addEventListener('click', function (e) {
    modalContent.classList.add('animation-out')
 })
 
-modalContent.addEventListener('animationend', function() {
+modalContent.addEventListener('animationend', function () {
    if (modalContent.classList.contains('animation-out'))
       modal.classList.remove('show')
 })

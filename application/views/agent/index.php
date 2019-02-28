@@ -67,10 +67,16 @@
       <div class="booking-details">
          <div class="left">
             <h4>Fare Options</h4>
-            <p>Fare</p>
+            <div class="sub-details">
+               <p>Fare</p>
+               <p>Price</p>
+            </div>
          </div>
          <div class="right">
-            <h4 id="confirm-fare"></h4>
+            <div class="sub-details">
+               <h4 id="confirm-fare"></h4>
+               <h4 id="confirm-price">1002</h4>
+            </div>
          </div>
       </div>
       <form method="post" action="insertTicket">

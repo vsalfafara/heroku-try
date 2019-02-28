@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat');
 @import url('https://fonts.googleapis.com/css?family=Montserrat|Source+Sans+Pro');
 
-html {
-   height: auto;
+html{
+   height: 100vh;
 }
 body {
    margin: 0;
    padding: 0;
    font-family: 'Montserrat', sans-serif;
    transition: 0.3s;
-   height: 100%;
+   min-height: 100%;
 }
 
 .blur {
@@ -619,7 +619,8 @@ tbody:before {
 /* FOOTER */
 
 footer {
-   position: relative;
+   position: absolute;
+   bottom: 0;
    width: 100%;
    padding: 8px 20px;
    background: #3A506B;
