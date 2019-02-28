@@ -59,6 +59,7 @@ class Agent extends CI_Controller {
 	}
 
 	public function insertTicket() {
+		print_r($this->input->post('price')); die;
 		$vessel = $this->input->post('vessel');
 		$number = $this->input->post('number');
 		$date = $this->input->post('date');
@@ -84,5 +85,14 @@ class Agent extends CI_Controller {
 												 $ref_num);
 												 
 		redirect('agent/index', 'refresh');
+	}
+
+	public function getPrice() {
+		$route = 'RT_LIB_SJM';
+		$port = $this->session->userdata('port_gid');
+		$fare = 'Senior Citizen';
+		$price = $this->fare_model->getFare($route, $port, $fare);
+
+		print_r(json_encode($price));
 	}
 } 

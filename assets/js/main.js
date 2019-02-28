@@ -39,6 +39,7 @@ let formDate = document.querySelector('#date')
 let formAgent = document.querySelector('#ticketing-agent')
 let formRoute = document.querySelector('#route')
 let formFare = document.querySelector('#fare')
+let formPrice = document.querySelector('#price')
 
 // MODAL BUTTONS
 let edit = document.querySelector('#edit')
@@ -78,6 +79,19 @@ function checkVoyageDetailsValues() {
    }
 }
 
+async function getPrice(route, fare) {
+
+   let res = await fetch('getprice', {
+      method: 'post',
+      body: form,
+   })
+
+   price = await res.json()
+
+   console.log(price)
+   return price
+}
+
 function insertValues(formData) {
    formVessel.value = formData['vessel']
    formVoyageNumber.value = formData['voyage'].details
@@ -85,6 +99,22 @@ function insertValues(formData) {
    formAgent.value = formData['voyage'].agent
    formRoute.value = formData['route']
    formFare.value = formData['fare']
+   // formPrice.value = getPrice(formRoute.value, formFare.value)
+   price = async () => {
+      let form = new FormData
+
+      form.append('fare', fare)
+      form.append('route', route)
+      const res = await fetch('getprice', {
+         method: 'post',
+         body: form,
+      })
+
+      const json = await res.json()
+      console.log(json)
+   }
+   formPrice.value = price()
+
 
    let confirmVessel = document.querySelector('#confirm-vessel')
    let confirmNumber = document.querySelector('#confirm-number')
@@ -92,6 +122,7 @@ function insertValues(formData) {
    let confirmAgent = document.querySelector('#confirm-agent')
    let confirmRoute = document.querySelector('#confirm-route')
    let confirmFare = document.querySelector('#confirm-fare')
+   let confirmPrice = document.querySelector('#confirm-price')
 
    confirmVessel.innerHTML = formVessel.value
    confirmNumber.innerHTML = formVoyageNumber.value
@@ -99,6 +130,7 @@ function insertValues(formData) {
    confirmAgent.innerHTML = formAgent.value
    confirmRoute.innerHTML = formRoute.value
    confirmFare.innerHTML = formFare.value
+   confirmPrice.innerHTML = formPrice.value
 }
 
 // ATTACH PREVENT DEFAULT TO ALL BUTTONS 

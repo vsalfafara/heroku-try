@@ -86,6 +86,7 @@
          <input type="text" id="ticketing-agent" name="ticketing-agent">
          <input type="text" id="route" name="route">
          <input type="text" id="fare" name="fare">
+         <input type="text" id="price" name="price">
          <div class="action-buttons">
             <button id="edit">EDIT</button>
             <button id="submit">CONFIRM</button>
@@ -117,7 +118,7 @@
             <div class="voyage">
                <p>Voyage Number</p>
                <div class="voyage-number">
-                  <input type="number" id="voyage-number">
+                  <input type="number" id="voyage-number" min="0">
                   <i class="material-icons">check</i>
                </div>
                <p>Voyage Date</p>
