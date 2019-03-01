@@ -29,6 +29,7 @@
             <th>Voyage Date <br><span>MM|DD|YY</span></th>
             <th>Route</th>
             <th>Fare</th>
+            <th>Fare Price</th>
             <th>Booked</th>
          </tr>
       </thead>
@@ -40,6 +41,7 @@
                <td><?= $ticket['voyage_date']?></td>
                <td><?= $ticket['route']?></td>
                <td><?= $ticket['fair_type']?></td>
+               <td><?= $ticket['fair_price']?></td>
                <td><?= $ticket['insert_date']?></td>
             </tr>
          <?php } ?>

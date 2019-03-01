@@ -190,5 +190,7 @@
 </div>
 <script>
    let agentName = '<?= $agent ?>'
+   let port = '<?= $this->session->userdata('port_gid') ?>'
+   // let price = JSON.parse('<?= $price ?>')
 </script>
 <script src="<?= base_url()?>assets/js/date.js"></script>

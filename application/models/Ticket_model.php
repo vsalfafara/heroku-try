@@ -35,6 +35,7 @@ class Ticket_model extends CI_Model {
                         public.ticket.voyage_date,
                         CONCAT(public.route.source_location, \' - \', public.route.dest_location) as route,
                         public.ticket.fair_type,
+                        public.ticket.fair_price,
                         public.ticket.insert_date');
       $this->db->from('public.ticket');
       $this->db->join('public.vessel', 'public.vessel.vessel_gid = public.ticket.vessel_gid');

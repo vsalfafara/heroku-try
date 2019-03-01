@@ -44,23 +44,17 @@ let formPrice = document.querySelector('#price')
 // MODAL BUTTONS
 let edit = document.querySelector('#edit')
 
-// ASIDE
-let overlay = document.querySelector('#overlay')
-let body = document.querySelector('body')
-let aside = document.querySelector('aside')
-let sideOpen = document.querySelector('#side-open')
-let sideClose = document.querySelector('#side-close')
+// GET PRICES
+let form = new FormData
+let price
+form.append('port', port)
+fetch('getprice', {
+   method: 'post',
+   body: form
+})
+   .then(r => r.json())
+   .then(data => price = JSON.parse(data))
 
-sideOpen.addEventListener('click', function () {
-   overlay.classList.add('overlay')
-   aside.classList.remove('side-hide')
-   body.classList.add('overflow-hide')
-})
-sideClose.addEventListener('click', function () {
-   overlay.classList.remove('overlay')
-   aside.classList.add('side-hide')
-   body.classList.remove('overflow-hide')
-})
 
 function checkVoyageDetailsValues() {
    if (vnumber.value &&
@@ -79,19 +73,6 @@ function checkVoyageDetailsValues() {
    }
 }
 
-async function getPrice(route, fare) {
-
-   let res = await fetch('getprice', {
-      method: 'post',
-      body: form,
-   })
-
-   price = await res.json()
-
-   console.log(price)
-   return price
-}
-
 function insertValues(formData) {
    formVessel.value = formData['vessel']
    formVoyageNumber.value = formData['voyage'].details
@@ -99,22 +80,11 @@ function insertValues(formData) {
    formAgent.value = formData['voyage'].agent
    formRoute.value = formData['route']
    formFare.value = formData['fare']
-   // formPrice.value = getPrice(formRoute.value, formFare.value)
-   price = async () => {
-      let form = new FormData
 
-      form.append('fare', fare)
-      form.append('route', route)
-      const res = await fetch('getprice', {
-         method: 'post',
-         body: form,
-      })
-
-      const json = await res.json()
-      console.log(json)
+   for (var data in price) {
+      if (price[data].route_gid == formRoute.value && price[data].fair_type == formFare.value)
+         formPrice.value = price[data].price
    }
-   formPrice.value = price()
-
 
    let confirmVessel = document.querySelector('#confirm-vessel')
    let confirmNumber = document.querySelector('#confirm-number')

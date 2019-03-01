@@ -21,4 +21,19 @@ class Fare_model extends CI_Model {
 
       return $query->row_array()['price'];
    }
+
+   public function getFareByPort($port) {
+      $data = array(
+         'port_gid' => $port
+      );
+
+      $this->db->select('*');
+      $this->db->from('public.fair');
+      $this->db->where($data);
+      $this->db->order_by("fair_type", "asc");
+
+      $query = $this->db->get();
+
+      return $query->result_array();
+   }
 }

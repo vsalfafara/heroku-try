@@ -34,10 +34,13 @@ class Agent extends CI_Controller {
 			$data['vessels'] = $this->vessel_model->getVessels();
 			$data['routes'] = $this->route_model->getRoutes($this->session->userdata('port_gid'));
 			$data['agent'] = $this->session->userdata('first_name') . ' ' . $this->session->userdata('last_name');
-
+			$data['price'] = json_encode($this->fare_model->getFareByPort($this->session->userdata('port_gid')));
 			$this->load->view('extra/header', $data);
 			$this->load->view('agent/index', $data);
 			$this->load->view('extra/footer');
+			$this->load->view('extra/mainjs');
+			$this->load->view('extra/sidebar');
+			$this->load->view('extra/close');
 		}
 		else {
 			redirect('login/index', 'refresh');
@@ -52,6 +55,8 @@ class Agent extends CI_Controller {
 			$this->load->view('extra/header', $data);
 			$this->load->view('history', $data);
 			$this->load->view('extra/footer');
+			$this->load->view('extra/sidebar');
+			$this->load->view('extra/footer');
 		}
 		else {
 			redirect('login/index', 'refresh');
@@ -59,7 +64,6 @@ class Agent extends CI_Controller {
 	}
 
 	public function insertTicket() {
-		print_r($this->input->post('price')); die;
 		$vessel = $this->input->post('vessel');
 		$number = $this->input->post('number');
 		$date = $this->input->post('date');
@@ -69,8 +73,7 @@ class Agent extends CI_Controller {
 		$port = $this->session->userdata('port_gid');
 		$insert_date = date('Y-m-d H:i:s', strtotime('now'));
 		$ref_num = strtotime('now');
-
-		$price = $this->fare_model->getFare($route, $port, $fare);
+		$price = $this->input->post('price');
 
 		$this->ticket_model->setTicket($vessel, 
 												 $number, 
@@ -88,11 +91,8 @@ class Agent extends CI_Controller {
 	}
 
 	public function getPrice() {
-		$route = 'RT_LIB_SJM';
-		$port = $this->session->userdata('port_gid');
-		$fare = 'Senior Citizen';
-		$price = $this->fare_model->getFare($route, $port, $fare);
+		$price = json_encode($this->fare_model->getFareByPort($this->session->userdata('port_gid')));
 
-		print_r(json_encode($price));
+		echo json_encode($price);
 	}
 } 
