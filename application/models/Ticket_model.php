@@ -48,4 +48,37 @@ class Ticket_model extends CI_Model {
 
       return $query->result_array();
    }
+
+   public function getTicket($id) {
+      $data = array(
+         'ticket_gid' => $id
+      );
+
+      $this->db->select('*');
+      $this->db->from('public.ticket');
+      $this->db->where($data);
+
+      $query = $this->db->get();
+
+      return $query->row_array();
+   }
+   
+   public function updateTicket($data) {
+      unset($data['submit']);
+      $this->db->set($data);
+      $this->db->where('ticket_gid', $data['ticket_gid']);
+      $this->db->update('public.ticket');
+   }
+
+   public function getTotalFairByMonth() {
+      $sql = "SELECT date_part('month', voyage_date) as Month, 
+               COALESCE(SUM(fair_price), 0) AS total 
+               FROM public.ticket 
+               WHERE date_part('year', voyage_date) = date_part('year', CURRENT_DATE)
+               GROUP BY date_part('month', voyage_date);";
+
+      $query = $this->db->query($sql);
+
+      return $query->result_array();
+   }
 }

@@ -55,12 +55,41 @@ class Admin extends CI_Controller {
 			redirect('login/index', 'refresh');
 		}
 	}
+
+	public function dashboard() {
+		$data['admin'] = $this->session->userdata('first_name') . ' ' . $this->session->userdata('last_name');
+		$data['username'] = $this->session->userdata('user_gid');
+		$data['admin_link'] = '';
+		$data['dashboard'] = 'active';
+
+		$column_chart_data = $this->ticket_model->getTotalFairByMonth();
+
+		for ($i = 0; $i < sizeof($column_chart_data); $i++) {
+			$monthNum  = $column_chart_data[$i]['month'];
+			$dateObj   = DateTime::createFromFormat('!m', $monthNum);
+			$column_chart_data[$i]['month'] = $dateObj->format('F');
+		}
+
+		$data['column_chart'] = json_encode($column_chart_data, JSON_NUMERIC_CHECK); 
+
+		$this->load->view('admin/header.php', $data);
+      $this->load->view('admin/dashboard.php', $data);
+      $this->load->view('admin/footer.php');
+	}
 	
 	public function fetchTableData() {
 		$data['target'] = trim(file_get_contents("php://input"));
 		$data['table'] = explode('.', $data['target'], 2)[1];
-		$data['link']['delete'] = base_url() .  $data['table'] . '_action/delete/';
-		$data['link']['edit'] = base_url() .  $data['table'] . '_action/edit/';
+
+		if ($data['table'] == 'fair' || 
+			 $data['table'] == 'ticket' ||
+			 $data['table'] == 'user' ||
+			 $data['table'] == 'login')
+			$data['link']['edit'] = base_url() .  $data['table'] . '_action/edit/';
+		
+		if ($data['table'] == 'user' ||
+			 $data['table'] == 'login') 
+			$data['link']['delete'] = base_url() .  $data['table'] . '_action/delete/';
 
 		$data['columns'] = $this->table_model->getColumns($data['table']);
 		$data['table_values'] = $this->table_model->getTableData($data['target']);

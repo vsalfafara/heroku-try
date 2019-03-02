@@ -24,11 +24,6 @@ class Login_action extends CI_Controller {
 		$this->load->model('ticket_model');
 		date_default_timezone_set('Asia/Manila');
 	}
-	
-	public function index() {
-		echo 'index';
-	}
-   
    public function edit($id = null) {
       echo $id;
    }

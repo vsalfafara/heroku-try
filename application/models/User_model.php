@@ -19,4 +19,13 @@ class User_model extends CI_Model {
 
       return $query->row_array();
    }
+
+   public function getUsers(){
+      $this->db->select('*');
+      $this->db->from('public.user');
+
+      $query = $this->db->get();
+
+      return $query->result_array();
+   }
 }

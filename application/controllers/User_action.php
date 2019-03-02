@@ -21,9 +21,9 @@ class User_action extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('ticket_model');
+		$this->load->model('user_model');
 		date_default_timezone_set('Asia/Manila');
-   }
+	}
    
    public function edit($id = null) {
       echo $id;

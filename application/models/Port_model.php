@@ -1,14 +1,14 @@
 <?php
-class Vessel_model extends CI_Model {
+class Port_model extends CI_Model {
 
    public function __construct()
    {
       $this->load->database();
    }
 
-   public function getVessels() {
+   public function getPorts() {
       $this->db->select('*');
-      $this->db->from('public.vessel');
+      $this->db->from('public.port');
 
       $query = $this->db->get();
 
