@@ -155,7 +155,7 @@
    </div>
    <div class="action">
       <button value="Submit" name="submit" class="reset-this btn confirm">CONFIRM</button>
-      <a href="<?= base_url()?>admin" class="reset-this btn cancel">CANCEL</a>
+      <a href="<?= base_url()?>admin/index" class="reset-this btn cancel">CANCEL</a>
    </div>
    </form>
 </div>
