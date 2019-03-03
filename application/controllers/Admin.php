@@ -63,6 +63,7 @@ class Admin extends CI_Controller {
 		$data['dashboard'] = 'active';
 
 		$column_chart_data = $this->ticket_model->getTotalFairByMonth();
+		$pie_chart_data = $this->ticket_model->getTotalFairByType();
 
 		for ($i = 0; $i < sizeof($column_chart_data); $i++) {
 			$monthNum  = $column_chart_data[$i]['month'];
@@ -71,6 +72,7 @@ class Admin extends CI_Controller {
 		}
 
 		$data['column_chart'] = json_encode($column_chart_data, JSON_NUMERIC_CHECK); 
+		$data['pie_chart'] = json_encode($pie_chart_data, JSON_NUMERIC_CHECK); 
 
 		$this->load->view('admin/header.php', $data);
       $this->load->view('admin/dashboard.php', $data);

@@ -81,4 +81,14 @@ class Ticket_model extends CI_Model {
 
       return $query->result_array();
    }
+
+   public function getTotalFairByType() {
+      $sql = "SELECT fair_type, SUM(fair_price) AS total
+               FROM public.ticket
+               GROUP BY fair_type";
+
+      $query = $this->db->query($sql);
+
+      return $query->result_array();
+   }
 }

@@ -28,7 +28,7 @@
    }
 
    .column-chart {
-      width: 60%;
+      width: 64%;
       height: 90%;
    }
 
@@ -37,7 +37,7 @@
    }
 
    .pie-chart {
-      width: 30%;
+      width: 33%;
       height: 90%;
    }
 </style>
@@ -54,6 +54,8 @@
          <div class="chartdiv-column"></div>
       </div>
       <div class="container pie-chart">
+        <h3 style="padding: 1em 20px; margin:0">Fares</h3>
+        <div class="chartdiv-pie"></div>
       </div>
    </div>
 </div>
@@ -66,6 +68,8 @@
 <script>
 am4core.useTheme(am4themes_animated);
 let column_chart = <?= $column_chart ?>;
+let pie_chart = <?= $pie_chart ?>;
+
 var chart = am4core.createFromConfig({
   // Reduce saturation of colors to make them appear as toned down
   "colors": {
@@ -139,4 +143,35 @@ var chart = am4core.createFromConfig({
     "behavior": "zoomX"
   }
 }, "chartdiv-column", "XYChart");
+
+
+am4core.useTheme(am4themes_animated);
+
+// Create chart
+var chart = am4core.createFromConfig({
+  "fontSize": 9,
+  // Set data
+  data: pie_chart,
+
+  // Create series
+  "series": [{
+    "type": "PieSeries",
+    "tooltipText": "",
+    "dataFields": {
+      "value": "total",
+      "category": "fair_type"
+    },
+    "hiddenState": {
+      "properties": {
+        // this creates initial animation
+        "opacity": 1,
+        "endAngle": -90,
+        "startAngle": -90
+      }
+    }
+  }],
+
+  // Add legend
+}, "chartdiv-pie", "PieChart");
+
 </script>

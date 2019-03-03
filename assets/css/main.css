@@ -620,7 +620,7 @@ tbody:before {
 
 footer {
    position: absolute;
-   bottom: 0;
+   /* bottom: 0; */
    width: 100%;
    padding: 8px 20px;
    background: #3A506B;
