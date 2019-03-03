@@ -14,7 +14,7 @@
 			</div>
 			<div class="profile">
 				<div class="circle">
-					<img src="<?= base_url()?>assets/images/invo.jpg" alt="">
+					<img src="<?= base_url()?>assets/images/profile.png" alt="">
 				</div>
 				<div class="profile-name">
 					<p><?= $admin ?></p>
