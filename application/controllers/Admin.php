@@ -184,4 +184,8 @@ class Admin extends CI_Controller {
 
 		echo $view;
 	}
+
+	public function generateReport() {
+		redirect(base_url().'/pdfgen/generatereport', 'refresh');
+	}
 }

@@ -108,6 +108,7 @@
     cursor: pointer;
     padding: 3px 10px;
     border-radius: 5px;
+    margin-bottom: 10px;
   }
 
   table {
@@ -157,6 +158,7 @@
               <select name="voyage_num" id="voyage"></select>
               <select name="voyage_date" id="date"></select>
               <button value="create-report" id="create-report">Create Report</button>
+              <button value="generate-pdf" id="generate-pdf">Generate PDF</button>
             </div>
         </div>
         <div class="report-table">
@@ -198,7 +200,9 @@
       </div>
    </div>
 </div>
-
+<script>
+let base_url = '<?= base_url()?>'
+</script>
 <script src="<?=base_url()?>assets/js/core.js"></script>
 <script src="<?=base_url()?>assets/js/charts.js"></script>
 <script src="<?=base_url()?>assets/js/animated.js"></script>
