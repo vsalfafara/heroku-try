@@ -219,7 +219,7 @@ function am4themes_myTheme(target) {
   }
 }
 
-am4core.useTheme(am4themes_animated)
+am4core.useTheme(am4themes_myTheme)
 
 let column_chart = <?= $column_chart ?>;
 let pie_chart = <?= $pie_chart ?>;
@@ -278,6 +278,12 @@ var chart = am4core.createFromConfig({
     "columns": {
       // Disable outline
       "strokeOpacity": 0,
+      
+      "adapter": {
+        "fill": function (fill, target) {
+          return chart.colors.getIndex(target.dataItem.index);
+        }
+      }
     },
 
   }],
@@ -289,7 +295,7 @@ var chart = am4core.createFromConfig({
 }, "chartdiv-column", "XYChart");
 
 
-am4core.useTheme(am4themes_animated);
+am4core.useTheme(am4themes_myTheme);
 
 // Create chart
 var chart = am4core.createFromConfig({
