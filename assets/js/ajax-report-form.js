@@ -50,24 +50,26 @@ create_report.addEventListener('click', function (e) {
 })
 
 generate_pdf.addEventListener('click', function () {
-	let form = document.createElement("form");
-	form.setAttribute("method", 'post');
-	form.setAttribute("action", base_url + 'pdfgen/generatereport');
-	form.setAttribute("target", '_blank');
+	if (vessel.value && voyage.value && date.value) {
+		let form = document.createElement("form");
+		form.setAttribute("method", 'post');
+		form.setAttribute("action", base_url + 'pdfgen/generatereport');
+		form.setAttribute("target", '_blank');
 
-	let data = []
-	data['vessel_gid'] = vessel.value
-	data['voyage_num'] = voyage.value
-	data['voyage_date'] = date.value
+		let data = []
+		data['vessel_gid'] = vessel.value
+		data['voyage_num'] = voyage.value
+		data['voyage_date'] = date.value
 
-	for (var key in data) {
-		var hiddenField = document.createElement("input");
-		hiddenField.setAttribute("type", "hidden");
-		hiddenField.setAttribute("name", key);
-		hiddenField.setAttribute("value", data[key]);
-		form.appendChild(hiddenField);
+		for (var key in data) {
+			var hiddenField = document.createElement("input");
+			hiddenField.setAttribute("type", "hidden");
+			hiddenField.setAttribute("name", key);
+			hiddenField.setAttribute("value", data[key]);
+			form.appendChild(hiddenField);
+		}
+
+		document.body.appendChild(form);
+		form.submit()
 	}
-
-	document.body.appendChild(form);
-	form.submit()
 })
