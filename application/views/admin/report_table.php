@@ -4,9 +4,9 @@
       <td><?= $data['port_to']?></td>
       <td><?= $data['from_no']?></td>
       <td><?= $data['to_no']?></td>
-      <td><?= $data['passengers']?></td>
       <td><?= $data['fare']?></td>
-      <td><?= $data['port_from']?></td>
+      <td><?= $data['passengers']?></td>
+      <td><?= $data['price']?></td>
       <td><?= $data['total']?></td>
    </tr>
 <?php }?>
