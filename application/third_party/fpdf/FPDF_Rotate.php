@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class FPDF_Rotate extends FPDF_code128
+class Fpdf_code128 extends Fpdf_code128
 {
 var $angle=0;
 

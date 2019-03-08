@@ -11,7 +11,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 define('FPDF_VERSION','1.81');
 
-class FPDF
+class Fpdf
 {
 protected $page;               // current page number
 protected $n;                  // current object number

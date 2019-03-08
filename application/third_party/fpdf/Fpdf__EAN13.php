@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class FPDF_EAN13 extends FPDF
+class Fpdf_EAN13 extends Fpdf
 {
 function EAN13($x, $y, $barcode, $h=16, $w=.35)
 {

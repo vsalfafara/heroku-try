@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 // $config['base_url'] = 'http://localhost/ticket/';
-$config['base_url'] = 'https://alfa-ticketing-app-v01.herokuapp.com/';
+// $config['base_url'] = 'https://alfa-ticketing-app-v01.herokuapp.com/';
 
 /*
 |--------------------------------------------------------------------------

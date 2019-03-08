@@ -42,7 +42,7 @@ spl_autoload_register(function ($class_name) {
     include APPPATH.'third_party/fpdf/'. $class_name . '.php';
 });
 
-class Mypdf extends PDF {
+class Mypdf extends Pdf {
 	/**
 	 * page orientation.
 	 * @var	string 'P' or 'Portrait', 'L' or 'Landscape'

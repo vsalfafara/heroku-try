@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class PDF extends FPDF_Protection{
+class Pdf extends Fpdf_Protection{
 	function RotatedText($x,$y,$txt,$angle)
 	{
 	    //Text rotated around its origin

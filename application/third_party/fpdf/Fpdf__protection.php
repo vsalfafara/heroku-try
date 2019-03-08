@@ -59,7 +59,7 @@ else
 	}
 }
 
-class FPDF_Protection extends PDF_HTML
+class Fpdf_protection extends Pdf_html
 {
 	var $encrypted = false;  //whether document is protected
 	var $Uvalue;             //U entry in pdf document

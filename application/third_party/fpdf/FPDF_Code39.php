@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class FPDF_Code39 extends FPDF_EAN13
+class Fpdf_code39 extends Fpdf_EAN13
 {
 function Code39($xpos, $ypos, $code, $baseline=0.5, $height=5){
 
