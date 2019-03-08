@@ -19,4 +19,14 @@ class Route_model extends CI_Model {
 
       return $query->result_array();
    }
+
+   public function getLoc($data) {
+      $this->db->select('*');
+      $this->db->from('public.route');
+      $this->db->where($data);
+
+      $query = $this->db->get();
+
+      return $query->row_array();
+   }
 }

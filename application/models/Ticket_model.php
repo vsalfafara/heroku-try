@@ -6,7 +6,7 @@ class Ticket_model extends CI_Model {
       $this->load->database();
    }
 
-   public function setTicket($vessel, $number, $date, $agent, $route, $fare, $price, $port, $user, $insert_date, $ref) {
+   public function setTicket($vessel, $number, $date, $agent, $route, $fare, $price, $port, $user, $insert_date) {
       $data = array(
          'voyage_num' => $number,
          'voyage_date' => $date,
@@ -17,7 +17,6 @@ class Ticket_model extends CI_Model {
          'fair_type' => $fare,
          'fair_price' => $price,
          'insert_date' => $insert_date,
-         'ref_num' => $ref
       );
 
       $this->db->insert('public.ticket', $data);
@@ -88,6 +87,43 @@ class Ticket_model extends CI_Model {
                GROUP BY fair_type";
 
       $query = $this->db->query($sql);
+
+      return $query->result_array();
+   }
+
+   public function getVoyageByVessel($data) {   
+      $this->db->select('distinct(voyage_num)');
+      $this->db->from('public.ticket');
+      $this->db->where($data);
+      // $this->db->where($data);
+
+      $query = $this->db->get();
+
+      return $query->result_array();
+   }
+
+   public function getDateByVoyage($data) {   
+      $this->db->select('distinct(voyage_date)');
+      $this->db->from('public.ticket');
+      $this->db->where($data);
+      // $this->db->where($data);
+
+      $query = $this->db->get();
+
+      return $query->result_array();
+   }
+
+   public function getReport($data) {
+      $this->db->select("*, 
+                        lead(port_gid) over (partition by port_gid order by port_gid) as next_port,
+                        lead(route_gid) over (partition by port_gid order by ticket_gid) as next_route,
+                        lead(ref_num) over (partition by fair_type order by ref_num) as next_ref"
+                     );
+      $this->db->from('public.ticket');
+      $this->db->where($data);
+      $this->db->order_by('ref_num');
+
+      $query = $this->db->get();
 
       return $query->result_array();
    }

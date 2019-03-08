@@ -61,6 +61,7 @@ class Admin extends CI_Controller {
 		$data['username'] = $this->session->userdata('user_gid');
 		$data['admin_link'] = '';
 		$data['dashboard'] = 'active';
+		$data['vessels'] = $this->vessel_model->getVessels();
 
 		$column_chart_data = $this->ticket_model->getTotalFairByMonth();
 		$pie_chart_data = $this->ticket_model->getTotalFairByType();
@@ -117,6 +118,70 @@ class Admin extends CI_Controller {
 			$view = $this->load->view('admin/search_table.php', $data, true);
 		else 
 			$view = '<tr><td>No Results Found</td></tr?';
+		echo $view;
+	}
+
+	public function ajaxVoyage() {
+		$data['options'] = $this->ticket_model->getVoyageByVessel($this->input->post());
+		$data['select'] = "Voyage";
+
+		$view = $this->load->view('admin/report_options_voyage.php', $data, true);
+
+		echo $view;
+	}
+
+	public function ajaxDate() {
+		$data['options'] = $this->ticket_model->getDateByVoyage($this->input->post());
+		$data['select'] = "Date";
+
+		$view = $this->load->view('admin/report_options_date.php', $data, true);
+
+		echo $view;
+	}
+
+	public function ajaxReport() {
+
+		$data['data'] = $this->ticket_model->getReport($this->input->post());
+		$data['report'] = [];
+		$sum = 0;
+		$passengers = 0;
+		$totalSum = 0;
+		$totalPassengers = 0;
+		$count = 0;
+
+		for ($i = 0; $i < sizeof($data['data']); $i++){ 
+			$ref_num = $data['data'][$i]['ref_num'];
+			$next_ref = $data['data'][$i]['next_ref'];
+			$route = $data['data'][$i]['route_gid'];
+			$next_route = $data['data'][$i]['next_route'];
+			$sum += $data['data'][$i]['fair_price'];
+			$passengers++;
+
+			if (($ref_num + 1 != $next_ref || $next_ref == "null") || ($route != $next_route)) {
+				$route = $this->route_model->getLoc(['route_gid' => $data['data'][$i]['route_gid'], 'port_gid' => $data['data'][$i]['port_gid']]);
+
+				$data['report'][$count]['port_from'] = $route['source_location'];
+				$data['report'][$count]['port_to'] = $route['dest_location'];
+				$data['report'][$count]['from_no'] = $first_ref = $ref_num - ($passengers - 1);				
+				$data['report'][$count]['to_no'] = $passengers - 1 == 0 ? "---" : $ref_num;
+				$data['report'][$count]['passengers'] = $passengers;
+				$data['report'][$count]['fare'] = $data['data'][$i]['fair_type'];				
+				$data['report'][$count]['price'] = $data['data'][$i]['fair_price'];
+				$data['report'][$count]['total'] = $sum;
+				
+				$totalSum += $sum;
+				$totalPassengers += $passengers;
+				$sum = 0;
+				$passengers = 0;
+				$count++;
+			}
+		}
+
+		$data['total_record']['total_passengers'] = $totalPassengers;
+		$data['total_record']['total_sum'] = $totalSum;
+
+		$view = $this->load->view('admin/report_table', $data, true);
+
 		echo $view;
 	}
 }

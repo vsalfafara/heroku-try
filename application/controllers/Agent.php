@@ -72,7 +72,7 @@ class Agent extends CI_Controller {
 		$fare = $this->input->post('fare');
 		$port = $this->session->userdata('port_gid');
 		$insert_date = date('Y-m-d H:i:s', strtotime('now'));
-		$ref_num = strtotime('now');
+
 		$price = $this->input->post('price');
 
 		$this->ticket_model->setTicket($vessel, 
@@ -84,8 +84,7 @@ class Agent extends CI_Controller {
 												 $price,
 												 $port,
 												 $this->session->userdata('user_gid'),
-												 $insert_date,
-												 $ref_num);
+												 $insert_date);
 												 
 		redirect('agent/index', 'refresh');
 	}

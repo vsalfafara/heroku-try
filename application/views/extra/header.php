@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+	<title>Solex Argo Ferry Corporation</title>
 		<link rel="stylesheet" href="<?= base_url() ?>assets/css/main.css">
 		<link rel="stylesheet" href="<?= base_url() ?>assets/css/icon.css">
 	</head>
