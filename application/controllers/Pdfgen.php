@@ -1,6 +1,6 @@
 <?php
 
-class pdfgen extends CI_Controller {
+class Pdfgen extends CI_Controller {
 
    public function __construct()
    {
