@@ -82,7 +82,7 @@ class Ticket_model extends CI_Model {
    }
 
    public function getTotalFairByType() {
-      $sql = "SELECT fair_type, SUM(fair_price) AS total
+      $sql = "SELECT fair_type, COUNT(*) AS total
                FROM public.ticket
                GROUP BY fair_type";
 
