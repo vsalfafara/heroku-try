@@ -15,7 +15,7 @@ class Pdfgen extends CI_Controller {
    //print hello world
    public function helloworld(){
       $config=array('orientation'=>'P','size'=>'A4');
-      // $this->load->library('mypdf',$config);
+      $this->load->library('mypdf',$config);
       $this->mypdf->AddPage();
       $this->mypdf->SetFont('Arial','B',16);
       $this->mypdf->Cell(40,10,'Hello World!');
